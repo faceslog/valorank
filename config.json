@@ -1,0 +1,9 @@
+{
+	"port": 3000,
+	"guildId": "GUILD ID",
+	"token": "BOT TOKEN",
+	"clientId": "CLIENT_ID",
+	"clientSecret": "CLIENT_SECRET",
+	"redirectUri": "http://your.domain.com/discord/callback",
+	"oauthUrl": "Oauth URL"
+}
