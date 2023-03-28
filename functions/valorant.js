@@ -46,5 +46,5 @@ exports.addRole = async function(userId, name, tag) {
 
     member.roles.add(role);
 
-    return { rank: fullRank, logo: account.data.card.wide, level: account.data.account_level };
+    return { rank: fullRank, image: account.data.card.wide, level: account.data.account_level };
 }

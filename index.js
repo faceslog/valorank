@@ -61,16 +61,47 @@ app.get('/discord/callback', async (req, res) => {
             }
         }
         
-        if(name && tag) {
-            let valData = await addRole(userId, name, tag);
-            res.send(`You can close this page and check discord. ${name}#${tag} - Rank: ${valData.rank}`);
-        } else {
-            res.status(500).send('Make sure your riot account is linked to discord !');
-        }
+        if(!name || !tag) {
+            throw new Error("Name or Tag is undefined !");
+        }        
+        
+        let valData = await addRole(userId, name, tag);
+        res.send(`
+            <html>
+                <head>
+                    <title>Success</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; text-align: center; }
+                    </style>
+                </head>
+            
+                <body>
+                    <h1>Success!</h1>
+                    <p>You can close this page and check Discord.</p>
+                    <p>${name}#${tag}<br/>Rank: ${valData.rank}<br/>Level: ${valData.level}</p>
+                    <img src="${valData.image}" alt="Banner"> 
+                </body>
+            </html>
+        `);
         
     } catch (error) {
         console.error('Error:', error.message);
-        res.status(500).send('An error occurred while processing your request.');
+        
+        res.status(500).send(`
+            <html>
+                <head>
+                    <title>Error</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; text-align: center; }
+                    </style>
+                </head>
+                                                                                                                                                                                        
+                <body>
+                    <h1>Error</h1>
+                    <p>An error occurred while processing your request.</p>
+                </body>
+            </html>
+        `);
     }
 });
 
