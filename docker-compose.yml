@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+ valorank:
+  image: valorank:latest
+  container_name: valorank
+  restart: unless-stopped
+  security_opt:
+    - no-new-privileges:true
+  ports:
+    - 3000:3000
+  environment:
+    - TZ=Europe/Paris
+    - PUID=1000
+    - PGID=1000
+    - PORT=3000
+    - HOST=0.0.0.0
+  volumes:
+    - ./config.json:/app/config.json 
+
+# Deactivate Watchtower
+# labels:
+#   - com.centurylinklabs.watchtower.enable=false
