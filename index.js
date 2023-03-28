@@ -105,6 +105,6 @@ app.get('/discord/callback', async (req, res) => {
     }
 });
 
-app.listen(config.port, () => {
-    console.log(`App listening on port: ${config.port}`);
+app.listen(config.port, config.host, () => {
+    console.log(`App listening on port: http://${config.host}:${config.port}`);
 });
